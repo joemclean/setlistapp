@@ -1,4 +1,12 @@
 SetlistApp::Application.routes.draw do
+  resources :songs
+
+  get "users/create"
+  get "pages/home"
+  root "pages#home"
+  get 'auth/:provider/callback' =>'sessions#create'
+  get 'signout' =>'sessions#destroy', as: :signout
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
