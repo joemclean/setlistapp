@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-songs =
+songs = [
 "1999",
 "46 Days",
 "50 Ways to Leave Your Lover",
@@ -822,7 +822,7 @@ songs =
 "You Enjoy Myself",
 "You Gotta See Mama Every Night",
 "You Shook Me All Night Long",
-"You're No Good",
+"You're No Good"
 ]
 
 songs.each do |song|
