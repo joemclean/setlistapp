@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-songs = [
+phish_songs = [
 "1999",
 "46 Days",
 "50 Ways to Leave Your Lover",
@@ -825,6 +825,20 @@ songs = [
 "You're No Good"
 ]
 
-songs.each do |song|
-  Song.create(name: song)
+secret_cove_songs = [
+  "Hallway of Masters",
+  "Triceratops",
+  "Steps",
+  "The Underground",
+  "Alice",
+  "Shades of Cottage Grove",
+  "Strangers",
+  "It Keeps on Being Tuesday",
+  "The Banana Song",
+  "C.L.A.M."
+]
+
+
+secret_cove_songs.each do |song_name|
+  Song.find_or_create_by_name(song_name)
 end

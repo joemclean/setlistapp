@@ -1,4 +1,6 @@
 SetlistApp::Application.routes.draw do
+  resources :artists
+
   resources :songs
 
   get "users/create"
