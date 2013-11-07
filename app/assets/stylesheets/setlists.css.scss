@@ -1,3 +1,24 @@
 // Place all the styles related to the Setlists controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.song_list {
+  //min-height: 50px;
+  //background-color: #eee;
+  //padding: 50px;
+  li {
+    cursor: move;
+    font-size: 1.3em;
+    line-height: 1.3em;
+  }
+}
+
+.modal_songs {
+  li {
+    cursor: pointer !important;
+  }
+}
+
+#new_songs_button {
+  margin-top: 30px;
+}

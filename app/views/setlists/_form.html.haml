@@ -8,5 +8,29 @@
           
   = f.hidden_field :user_id, value: current_user.id
 
+  .well
+    %ul#setlist.song_list.list-group
+    %button.btn.btn-default.btn-lg#new_songs_button{"data-toggle"=>"modal", "data-target"=>"#myModal"}
+      Add new songs
+
+  //Modal
+  .modal.fade#myModal{"tabindex"=>"-1", "role"=>"dialog", "aria-labelledby"=>"myModalLabel", "aria-hidden"=>"true"}
+    .modal-dialog
+      .modal-content
+        .modal-header
+          %button.close{type: "button", "data-dismiss"=>"modal", "aria-hidden"=>"true"}
+            &times;
+          %h4.modal-title#myModalLabel
+            Add songs
+        .modal-body
+          %ul.modal_songs.list-group
+            -for song in @songs
+              %li.song.list-group-item
+                =song.name
+        .modal-footer
+          %button.btn.btn-primary{ "type"=>"button", "data-dismiss"=>"modal"}
+            Done
+
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save Setlist', class: "btn btn-primary btn-lg"
+    .btn.btn-success.btn-lg Submit Setlist

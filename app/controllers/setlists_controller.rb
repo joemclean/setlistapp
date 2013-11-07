@@ -20,6 +20,7 @@ class SetlistsController < ApplicationController
 
   # GET /setlists/1/edit
   def edit
+    @songs = Song.all
   end
 
   # POST /setlists
