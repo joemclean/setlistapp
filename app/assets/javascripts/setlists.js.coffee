@@ -8,5 +8,5 @@ jQuery ->
     #update: ->
     #  $.post($(this).data('update-url'), $(this).sortable('serialize'))
   
-  $('.song').click ->
+  $('ul.modal_songs > li').click ->
     $('#setlist').append this
