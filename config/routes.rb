@@ -1,9 +1,14 @@
 SetlistApp::Application.routes.draw do
+  resources :setlists
+
+  resources :shows
+
   resources :artists
 
   resources :songs
 
   get "users/create"
+  resources :users
   get "pages/home"
   root "pages#home"
   get 'auth/:provider/callback' =>'sessions#create'
