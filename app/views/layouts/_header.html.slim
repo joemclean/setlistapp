@@ -1,0 +1,25 @@
+header.navbar.navbar-default.navbar-fixed-top.bs-docs-nav
+  .container
+    .navbar-header
+      button.navbar-toggle type="button" data-toggle="collapse" data-target=".bs-navbar-collapse"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      =link_to 'The Setlist Game', root_path, class: "navbar-brand"
+    nav.collapse.navbar-collapse.bs-navbar-collapse role="navigation"
+      -if current_user
+        ul.nav.navbar-nav
+          li
+            =link_to 'Upcoming Shows', shows_path
+          li
+            =link_to 'My Setlists', setlists_path
+          li
+            =link_to 'Rankings', users_path
+        ul.nav.navbar-nav.navbar-right
+          li =link_to current_user.name, current_user
+          li =link_to "Sign out", signout_path
+      -else
+        ul.nav.navbar-nav.navbar-right
+          li
+            =link_to "Sign in with Twitter", "/auth/twitter"

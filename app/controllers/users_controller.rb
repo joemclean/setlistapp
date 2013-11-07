@@ -7,6 +7,10 @@ class UsersController < ApplicationController
     set_user
   end
 
+  def index
+    @users = User.all
+  end
+
 
   private
 

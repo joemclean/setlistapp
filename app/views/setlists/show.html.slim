@@ -1,12 +1,12 @@
-%p#notice= notice
+p#notice= notice
 
-%p
-  %b User:
+p
+  b User:
   = @setlist.user_id
-%p
-  %b Show:
+p
+  b Show:
   = @setlist.show_id
 
 = link_to 'Edit', edit_setlist_path(@setlist)
-\|
+| | 
 = link_to 'Back', setlists_path

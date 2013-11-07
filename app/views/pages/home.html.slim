@@ -1,0 +1,7 @@
+.jumbotron
+  h1 
+    | Welcome to the Setlist Game!
+  p 
+    | The setlist game lets you compete against friends to guess the setlist at your favorite shows. See your friends' guesses, make your own, and compete to get the closest to the real set on the day of the show! Prove you know your favorite bands better than anyone- just sign in with Twitter to get started.
+  -if !current_user
+    =link_to "Sign in with Twitter", "/auth/twitter", class: "btn btn-lg btn-primary"

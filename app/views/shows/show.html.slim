@@ -1,18 +1,18 @@
-%p#notice= notice
+p#notice= notice
 
-%p
-  %b Name:
+p
+  b Name:
   = @show.name
-%p
-  %b Date:
+p
+  b Date:
   = @show.date
-%p
-  %b Venue:
+p
+  b Venue:
   = @show.venue
-%p
-  %b Time:
+p
+  b Time:
   = @show.time
 
 = link_to 'Edit', edit_show_path(@show)
-\|
+| | 
 = link_to 'Back', shows_path

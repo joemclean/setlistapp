@@ -1,0 +1,30 @@
+= form_for @show do |f|
+  - if @show.errors.any?
+    #error_explanation
+      h2= "#{pluralize(@show.errors.count, "error")} prohibited this show from being saved:"
+      ul
+        - @show.errors.full_messages.each do |msg|
+          li= msg
+
+  .row
+    .form-group.col-sm-6
+      label.control-label
+        = f.label :name
+      = f.text_field :name, class: "form-control"
+  .row
+    .form-group.col-sm-6
+      label.control-label
+        = f.label :venue
+      = f.text_field :venue, class: "form-control"
+  .row
+    .form-group.col-sm-3
+      label.control-label
+        = f.label :date
+      = f.text_field :date, class: "form-control"
+  .row
+    .form-group.col-sm-3
+      label.control-label
+        = f.label :time
+      = f.text_field :time, class: "form-control"
+  .actions
+    = f.submit 'Save', class: "btn btn-primary"
