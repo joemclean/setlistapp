@@ -1,11 +1,2 @@
-= flash[:notice]
-%br
-%br
--if current_user
-  ='signed in as ' + current_user.name + ' | '
-  = link_to "Sign out", signout_path
--else
-  =link_to "Sign in with Twitter", "/auth/twitter"
-
-%h1 Pages#home
+%h1 Home Page
 %p Find me in app/views/pages/home.html.haml
