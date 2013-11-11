@@ -18,22 +18,22 @@
               | Add songs
           .modal-body
             ul#modal_songs.list-group
-              li ng-repeat="song in artist_songs" class="list-group-item song_row"
-                button ng-click="addSongToSetlist(song)" ng-model="songText" class="btn btn-primary" type="button"
-                  |Add Song
+              li.list-group-item.song_row ng-repeat="song in artist_songs"
                 span 
                   |{{song.name}}
+                button.btn.btn-primary.pull-right ng-click="addSongToSetlist(song)" ng-model="songText" type="button"
+                  |Add Song
           .modal-footer
             button.btn.btn-primary type="button" data-dismiss="modal"
               | Done
     h3
-      |Song Count: {{songs.length}} 
+      |Song Count: {{setlist_songs.length}} 
       |{{songs}}
     .well
       ul#setlist.song_list.list-group
         li ng-repeat="song in setlist_songs" class="list-group-item song_row"
-          button ng-click="removeSongFromSetlist(song)" class="btn btn-danger" type="button"
-            |Remove Song
+          button.close type="button" ng-click="removeSongFromSetlist(song)"
+            | &times;
           span 
             |{{song.name}}
         button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
