@@ -19,6 +19,8 @@
           .modal-body
             ul#modal_songs.list-group
               li ng-repeat="song in songs" class="list-group-item song_row"
+                button ng-click="addSongFromList(song.name)" ng-model="songText" class="btn btn-primary" type="button"
+                  |Add Song
                 span 
                   |{{song.name}}
           .modal-footer
