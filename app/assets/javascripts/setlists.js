@@ -6,10 +6,10 @@ $(function() {
 
 
 function SongCtrl($scope) {
-  $scope.songs = gon.songs
-
+  $scope.artist_songs = gon.songs
+  $scope.setlist_songs = [];
 
   $scope.addSongFromList = function(song) {
-    $scope.songs.push(song);
+    $scope.setlist_songs.push(song);
   };
 }
