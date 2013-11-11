@@ -28,8 +28,9 @@
             button.btn.btn-primary type="button" data-dismiss="modal"
               | Done
     h3
-      |Song Count: {{setlist_songs.length}} 
-      |{{songs}}
+      |Song Count: {{setlist_songs.length}}
+    p
+      |Song array: {{setlist_songs}}
     .well
       ul#setlist.song_list.list-group
         li ng-repeat="song in setlist_songs" class="list-group-item song_row"

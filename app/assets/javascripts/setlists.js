@@ -1,10 +1,3 @@
-
-$(function() {
-  $("#setlist").sortable();
-  $("#setlist").disableSelection();
-});
-
-
 function SongCtrl($scope) {
 
   $scope.artist_songs = gon.songs;
@@ -27,4 +20,25 @@ function SongCtrl($scope) {
       }
     }
   }
+  
+  var sortableSong;
+
+  $scope.dragStart = function(e, ui) {
+    ui.item.data('start', ui.item.index());
+  }
+
+  $scope.dragEnd = function(e, ui) {
+    var start = ui.item.data('start'),
+      end = ui.item.index();
+        
+    $scope.setlist_songs.splice(end, 0, 
+      $scope.setlist_songs.splice(start, 1)[0]);
+        
+    $scope.$apply();
+  }
+
+  sortableSong = $('#setlist').sortable({
+    start: $scope.dragStart,
+    update: $scope.dragEnd
+  });
 }
