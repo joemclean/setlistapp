@@ -16,6 +16,7 @@ class SetlistsController < ApplicationController
   def new
     @setlist = Setlist.new
     @songs = Song.all
+    gon.songs = @songs
   end
 
   # GET /setlists/1/edit

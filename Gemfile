@@ -12,6 +12,7 @@ gem "slim-rails"
 gem 'omniauth-twitter'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
+gem 'gon'
 
 group :development do
   gem 'sqlite3'

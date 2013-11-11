@@ -1,20 +1,3 @@
-.modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-  .modal-dialog
-    .modal-content
-      .modal-header
-        button.close type="button" data-dismiss="modal"
-          | &times;
-        h4.modal-title#myModalLabel
-          | Add songs
-      .modal-body
-        ul#modal_songs.list-group
-          -for song in @songs
-            li.song.list-group-item
-              =song.name
-      .modal-footer
-        button.btn.btn-primary type="button" data-dismiss="modal"
-          | Done
-
 = form_for @setlist do |f|
   - if @setlist.errors.any?
     #error_explanation
@@ -24,11 +7,33 @@
           li =msg
           
   = f.hidden_field :user_id, value: current_user.id
-
-  .well
-    ul#setlist.song_list.list-group
-    button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
-      | Add new songs
+  div [ng-controller="SongCtrl"]
+    .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close type="button" data-dismiss="modal"
+              | &times;
+            h4.modal-title#myModalLabel
+              | Add songs
+          .modal-body
+            ul#modal_songs.list-group
+              li ng-repeat="song in songs" class="list-group-item song_row"
+                span 
+                  |{{song.name}}
+          .modal-footer
+            button.btn.btn-primary type="button" data-dismiss="modal"
+              | Done
+    h3
+      |Song Count: {{songs.length}} 
+      //|{{songs}}
+    .well
+      ul#setlist.song_list.list-group
+        li ng-repeat="song in songs" class="list-group-item song_row"
+          span 
+            |{{song.name}}
+        button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
+          | Add new songs
   .actions
     = f.submit 'Save Setlist', class: "btn btn-primary btn-lg"
     | &nbsp;
