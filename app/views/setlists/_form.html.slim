@@ -19,7 +19,7 @@
           .modal-body
             ul#modal_songs.list-group
               li ng-repeat="song in artist_songs" class="list-group-item song_row"
-                button ng-click="addSongFromList(song)" ng-model="songText" class="btn btn-primary" type="button"
+                button ng-click="addSongToSetlist(song)" ng-model="songText" class="btn btn-primary" type="button"
                   |Add Song
                 span 
                   |{{song.name}}
@@ -32,6 +32,8 @@
     .well
       ul#setlist.song_list.list-group
         li ng-repeat="song in setlist_songs" class="list-group-item song_row"
+          button ng-click="removeSongFromSetlist(song)" class="btn btn-danger" type="button"
+            |Remove Song
           span 
             |{{song.name}}
         button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
