@@ -17,8 +17,9 @@
             h4.modal-title#myModalLabel
               | Add songs
           .modal-body
+            input.form-control.song_search type="text" ng-model="search"placeholder="Search"
             ul#modal_songs.list-group
-              li.list-group-item.song_row ng-repeat="song in artist_songs"
+              li.list-group-item.song_row ng-repeat="song in artist_songs | filter:search | orderBy:'name'"
                 span 
                   |{{song.name}}
                 button.btn.btn-primary.pull-right ng-click="addSongToSetlist(song)" ng-model="songText" type="button"
