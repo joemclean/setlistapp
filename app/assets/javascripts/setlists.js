@@ -7,7 +7,9 @@ $(function() {
 
 function SongCtrl($scope) {
   $scope.songs = gon.songs
-  $scope.addSongFromList = function(name) {
-    $scope.songs.push({name:name});
+
+
+  $scope.addSongFromList = function(song) {
+    $scope.songs.push(song);
   };
 }
