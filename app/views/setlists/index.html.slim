@@ -7,11 +7,13 @@ table.table
     th
     th
     th
+    th
 
   - @setlists.each do |setlist|
     tr
       td= setlist.user_id
       td= setlist.show_id
+      td= setlist.songs
       td= link_to 'Show', setlist
       td= link_to 'Edit', edit_setlist_path(setlist)
       td= link_to 'Destroy', setlist, :method => :delete, :data => { :confirm => 'Are you sure?' }

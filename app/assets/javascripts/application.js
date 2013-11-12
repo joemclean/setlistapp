@@ -15,4 +15,6 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require turbolinks
+//= require angular.min
+//= require angular-resource.min
 //= require_tree .

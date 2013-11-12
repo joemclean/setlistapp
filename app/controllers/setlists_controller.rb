@@ -16,18 +16,25 @@ class SetlistsController < ApplicationController
   def new
     @setlist = Setlist.new
     @songs = Song.all
-    gon.songs = @songs
+    gon.artist_songs = @songs
+    gon.setlist_songs = []
   end
 
   # GET /setlists/1/edit
   def edit
     @songs = Song.all
+    gon.artist_songs = @songs
+    gon.setlist_songs = @setlist.songs
   end
 
   # POST /setlists
   # POST /setlists.json
   def create
     @setlist = Setlist.new(setlist_params)
+    eval(params[:song_ids]).each do |song_id|
+      song = Song.find(song_id.to_i)
+      @setlist.songs << song 
+    end
 
     respond_to do |format|
       if @setlist.save
@@ -72,6 +79,6 @@ class SetlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setlist_params
-      params.require(:setlist).permit(:user_id, :show_id)
+      params.require(:setlist).permit(:user_id, :show_id, :song_ids)
     end
 end

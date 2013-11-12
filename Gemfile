@@ -13,6 +13,7 @@ gem 'omniauth-twitter'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :github => 'anjlab/bootstrap-rails'
 gem 'gon'
+gem 'angularjs-rails'
 
 group :development do
   gem 'sqlite3'
