@@ -1,12 +1,8 @@
 p#notice= notice
-
-p
-  b User:
-  = @setlist.user_id
-p
-  b Show:
-  = @setlist.show_id
-
-= link_to 'Edit', edit_setlist_path(@setlist)
-| | 
-= link_to 'Back', setlists_path
+ul
+  -@setlist.songs.each do |song|
+    li
+      =song.name
+.btn-group
+  = link_to 'Edit', edit_setlist_path(@setlist), class: "btn btn-default"
+  = link_to 'Back', setlists_path, class: "btn btn-default"

@@ -44,6 +44,7 @@ function SongCtrl($scope) {
 
   sortableSong = $('#setlist').sortable({
     start: $scope.dragStart,
-    update: $scope.dragEnd
+    update: $scope.dragEnd,
+    axis: "y"
   });
 }

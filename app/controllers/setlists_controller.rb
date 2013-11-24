@@ -31,10 +31,16 @@ class SetlistsController < ApplicationController
   # POST /setlists.json
   def create
     @setlist = Setlist.new(setlist_params)
-    eval(params[:song_ids]).each do |song_id|
-      song = Song.find(song_id.to_i)
-      @setlist.songs << song 
+    
+    song_array = []
+
+    require 'json'
+    JSON.parse(params[:songs]).each do |song|
+      song_object = Song.find(song['id'])
+      song_array << song_object
     end
+
+    @setlist.songs = song_array
 
     respond_to do |format|
       if @setlist.save
@@ -50,8 +56,19 @@ class SetlistsController < ApplicationController
   # PATCH/PUT /setlists/1
   # PATCH/PUT /setlists/1.json
   def update
+
+    song_array = []
+
+    require 'json'
+    JSON.parse(params[:songs]).each do |song|
+      song_object = Song.find(song['id'])
+      song_array << song_object
+    end
+    @setlist.songs.clear
+    @setlist.songs = song_array
+
     respond_to do |format|
-      if @setlist.update(setlist_params)
+      if @setlist.save
         format.html { redirect_to @setlist, notice: 'Setlist was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,6 +96,7 @@ class SetlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def setlist_params
-      params.require(:setlist).permit(:user_id, :show_id, :song_ids)
+      params.require(:setlist).permit(:user_id, :show_id, :song_ids, :songs)
     end
+
 end

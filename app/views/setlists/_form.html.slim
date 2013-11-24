@@ -9,6 +9,7 @@
   = f.hidden_field :user_id, value: current_user.id
   div [ng-controller="SongCtrl"]
     =hidden_field_tag :song_ids, '{{setlist_song_ids}}'
+    =hidden_field_tag :songs, '{{setlist_songs}}'
     .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
       .modal-dialog
         .modal-content
