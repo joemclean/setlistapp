@@ -8,17 +8,22 @@ table.table
     th Time
     th
     th
-    th
 
   - @shows.each do |show|
     tr
-      td= show.name
-      td= show.date
+      td= show.name + " on " + show.date
+      td
+        ul Setlists for this show:
+        - show.setlists.each do |setlist|
+          li
+            = link_to ("Setlist created by " + setlist.user.name), setlist
       td= show.venue
       td= show.time
-      td= link_to 'Show', show
-      td= link_to 'Edit', edit_show_path(show)
-      td= link_to 'Destroy', show, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      td= link_to 'Make a setlist for this show', new_show_setlist_path(show.id), class: "btn btn-primary"
+      td
+        .btn-group
+          = link_to 'Edit', edit_show_path(show), class: "btn btn-default"
+          = link_to 'Destroy', show, :method => :delete, class: "btn btn-default", :data => { :confirm => 'Are you sure?' }
 
 br
 

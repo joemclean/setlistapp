@@ -1,7 +1,9 @@
 SetlistApp::Application.routes.draw do
   resources :setlists
 
-  resources :shows
+  resources :shows do
+    resources :setlists
+  end
 
   resources :artists
 

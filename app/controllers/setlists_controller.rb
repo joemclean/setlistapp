@@ -14,7 +14,8 @@ class SetlistsController < ApplicationController
 
   # GET /setlists/new
   def new
-    @setlist = Setlist.new
+    @show = Show.find(params[:show_id])
+    @setlist = @show.setlists.build
     @songs = Song.all
     gon.artist_songs = @songs
     gon.setlist_songs = []
@@ -37,8 +38,9 @@ class SetlistsController < ApplicationController
   # POST /setlists
   # POST /setlists.json
   def create
-    @setlist = Setlist.new(setlist_params)
-    
+    @show = Show.find(setlist_params[:show_id])
+    @setlist = @show.setlists.build(setlist_params)
+    @setlist.user_id = current_user.id
     @setlist.songs = get_song_objects_from_json(params[:songs])
 
     respond_to do |format|
@@ -91,6 +93,7 @@ class SetlistsController < ApplicationController
       end
       return song_array
     end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_setlist
       @setlist = Setlist.find(params[:id])

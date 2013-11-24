@@ -1,7 +1,9 @@
 p#notice= notice
-ul
+h1 
+  = @setlist.user.name + "'s setlist for " + @setlist.show.name + " on " + @setlist.show.date
+ul.song_list.list-group
   -@setlist.songs.each do |song|
-    li
+    li.list-group-item.song_row
       =song.name
 .btn-group
   = link_to 'Edit', edit_setlist_path(@setlist), class: "btn btn-default"
