@@ -23,7 +23,14 @@ class SetlistsController < ApplicationController
   # GET /setlists/1/edit
   def edit
     @songs = Song.all
-    gon.artist_songs = @songs
+    @artist_songs = []
+    @songs.each do |song|
+      unless @setlist.songs.include?(song)
+        @artist_songs << song
+      end
+    end
+
+    gon.artist_songs = @artist_songs
     gon.setlist_songs = @setlist.songs
   end
 

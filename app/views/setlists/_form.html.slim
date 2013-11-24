@@ -8,7 +8,6 @@
           
   = f.hidden_field :user_id, value: current_user.id
   div [ng-controller="SongCtrl"]
-    =hidden_field_tag :song_ids, '{{setlist_song_ids}}'
     =hidden_field_tag :songs, '{{setlist_songs}}'
     .modal.fade#myModal tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
       .modal-dialog
@@ -33,8 +32,6 @@
       |Song Count: {{setlist_songs.length}}
     p
       |Song array: {{setlist_songs}}
-    p
-      |Id array: {{setlist_song_ids}}
     .well
       ul#setlist.song_list.list-group
         li ng-repeat="song in setlist_songs" class="list-group-item song_row"
@@ -42,8 +39,8 @@
             | &times;
           span 
             |{{song.name}}
-        button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
-          | Add new songs
+      button.btn.btn-default.btn-lg#new_songs_button data-toggle="modal" data-target="#myModal"
+        | Add new songs
   .actions
     = f.submit 'Save Setlist', class: "btn btn-primary btn-lg"
     | &nbsp;
