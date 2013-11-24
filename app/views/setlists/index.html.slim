@@ -13,7 +13,11 @@ table.table
     tr
       td= setlist.user_id
       td= setlist.show_id
-      td= setlist.songs
+      td
+        ul
+          -setlist.songs.each do |song|
+            li
+              =song.name
       td= link_to 'Show', setlist
       td= link_to 'Edit', edit_setlist_path(setlist)
       td= link_to 'Destroy', setlist, :method => :delete, :data => { :confirm => 'Are you sure?' }
