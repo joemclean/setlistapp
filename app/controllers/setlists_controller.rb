@@ -39,15 +39,7 @@ class SetlistsController < ApplicationController
   def create
     @setlist = Setlist.new(setlist_params)
     
-    song_array = []
-
-    require 'json'
-    JSON.parse(params[:songs]).each do |song|
-      song_object = Song.find(song['id'])
-      song_array << song_object
-    end
-
-    @setlist.songs = song_array
+    @setlist.songs = get_song_objects_from_json(params[:songs])
 
     respond_to do |format|
       if @setlist.save
@@ -64,15 +56,8 @@ class SetlistsController < ApplicationController
   # PATCH/PUT /setlists/1.json
   def update
 
-    song_array = []
-
-    require 'json'
-    JSON.parse(params[:songs]).each do |song|
-      song_object = Song.find(song['id'])
-      song_array << song_object
-    end
     @setlist.songs.clear
-    @setlist.songs = song_array
+    @setlist.songs = get_song_objects_from_json(params[:songs])
 
     respond_to do |format|
       if @setlist.save
@@ -96,6 +81,16 @@ class SetlistsController < ApplicationController
   end
 
   private
+
+    def get_song_objects_from_json(songs_json)
+      song_array = []
+      require 'json'
+      JSON.parse(songs_json).each do |song|
+        song_object = Song.find(song['id'])
+        song_array << song_object
+      end
+      return song_array
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_setlist
       @setlist = Setlist.find(params[:id])
