@@ -1,8 +1,13 @@
 p#notice= notice
 
-p
-  b Name:
+h1
   = @artist.name
+h3
+  |Artist Songs
+ul.list-group
+  -@artist.songs.each do |song|
+    li.list-group-item =song.name
 
-= link_to 'Edit', edit_artist_path(@artist)
-= link_to 'Back', artists_path
+.btn-group
+  = link_to 'Edit', edit_artist_path(@artist), class: "btn btn-default"
+  = link_to 'Back', artists_path, class: "btn btn-default"

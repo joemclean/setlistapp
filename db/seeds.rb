@@ -838,7 +838,8 @@ secret_cove_songs = [
   "C.L.A.M."
 ]
 
+secret_cove = Artist.create(name: 'Secret Cove')
 
 secret_cove_songs.each do |song_name|
-  Song.find_or_create_by_name(song_name)
+  secret_cove.songs.find_or_create_by_name(song_name)
 end

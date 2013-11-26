@@ -1,17 +1,16 @@
 h1 Listing artists
 
-table
+table.table
   tr
     th Name
     th
-    th
-    th
   - @artists.each do |artist|
     tr
-      td = artist.name
-      td = link_to 'Show', artist
-      td = link_to 'Edit', edit_artist_path(artist)
-      td = link_to 'Destroy', artist, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      td = link_to artist.name, artist
+      td
+        .btn-group
+          = link_to 'Edit', edit_artist_path(artist), class: "btn btn-default"
+          = link_to 'Destroy', artist, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
 br
 
 = link_to 'New Artist', new_artist_path
