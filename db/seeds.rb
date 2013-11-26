@@ -838,8 +838,13 @@ secret_cove_songs = [
   "C.L.A.M."
 ]
 
-secret_cove = Artist.create(name: 'Secret Cove')
+secret_cove = Artist.find_or_create_by_name('Secret Cove')
+phish = Artist.find_or_create_by_name('Phish')
 
 secret_cove_songs.each do |song_name|
   secret_cove.songs.find_or_create_by_name(song_name)
+end
+
+phish_songs.each do |song_name|
+  phish.songs.find_or_create_by_name(song_name)
 end
