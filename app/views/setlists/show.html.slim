@@ -1,6 +1,6 @@
 p#notice= notice
 h1 
-  = @setlist.user.name + "'s setlist for " + @setlist.show.name + " on " + @setlist.show.date
+  = @setlist.user.name + "'s setlist for " + @setlist.show.name + " on " + @setlist.show.date.to_s
 ul.song_list.list-group
   -@setlist.songs.each do |song|
     li.list-group-item.song_row

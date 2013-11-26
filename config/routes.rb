@@ -12,6 +12,7 @@ SetlistApp::Application.routes.draw do
   get "users/create"
   resources :users
   get "pages/home"
+  get "pages/my_setlists", as: :my_setlists
   root "pages#home"
   get 'auth/:provider/callback' =>'sessions#create'
   get 'signout' =>'sessions#destroy', as: :signout

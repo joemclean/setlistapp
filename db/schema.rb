@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107005127) do
+ActiveRecord::Schema.define(version: 20131126192932) do
 
   create_table "artists", force: true do |t|
     t.string   "name"
@@ -35,11 +35,12 @@ ActiveRecord::Schema.define(version: 20131107005127) do
 
   create_table "shows", force: true do |t|
     t.string   "name"
-    t.string   "date"
+    t.date     "date",       limit: 255
     t.string   "venue"
     t.string   "time"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "artist_id"
   end
 
   create_table "songs", force: true do |t|

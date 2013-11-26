@@ -1,0 +1,4 @@
+ul.list-group
+-current_user.setlists.each do |setlist|
+  li.list-group-item
+    =link_to ("Setlist for " + setlist.show.name + " on " + setlist.show.date.to_s), setlist

@@ -20,7 +20,8 @@
     .form-group.col-sm-3
       label.control-label
         = f.label :date
-      = f.text_field :date, class: "form-control"
+      br
+      = f.date_select :date, class: "form-control"
   .row
     .form-group.col-sm-3
       label.control-label
