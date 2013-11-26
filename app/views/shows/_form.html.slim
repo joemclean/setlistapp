@@ -5,12 +5,12 @@
       ul
         - @show.errors.full_messages.each do |msg|
           li= msg
-
   .row
     .form-group.col-sm-6
       label.control-label
-        = f.label :name
-      = f.text_field :name, class: "form-control"
+        = f.label :artist
+      br
+      = f.select :artist_id, @artists.collect {|a| [ a.name, a.id ] }, class: "form-control"
   .row
     .form-group.col-sm-6
       label.control-label

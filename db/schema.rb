@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131126192932) do
+ActiveRecord::Schema.define(version: 20131126212754) do
 
   create_table "artists", force: true do |t|
     t.string   "name"
@@ -34,7 +34,6 @@ ActiveRecord::Schema.define(version: 20131126192932) do
   end
 
   create_table "shows", force: true do |t|
-    t.string   "name"
     t.date     "date",       limit: 255
     t.string   "venue"
     t.string   "time"

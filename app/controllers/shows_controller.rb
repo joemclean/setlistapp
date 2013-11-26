@@ -4,7 +4,7 @@ class ShowsController < ApplicationController
   # GET /shows
   # GET /shows.json
   def index
-    @shows = Show.all
+    @shows = Show.find(:all, order: "date")
   end
 
   # GET /shows/1
@@ -15,6 +15,7 @@ class ShowsController < ApplicationController
   # GET /shows/new
   def new
     @show = Show.new
+    @artists = Artist.all
   end
 
   # GET /shows/1/edit
@@ -69,6 +70,6 @@ class ShowsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
-      params.require(:show).permit(:name, :date, :venue, :time)
+      params.require(:show).permit(:artist_id, :name, :date, :venue, :time)
     end
 end

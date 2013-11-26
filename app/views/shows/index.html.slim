@@ -1,19 +1,19 @@
-h1 Listing shows
+h1 Upcoming shows
 
 table.table
   tr
-    th Name
-    th Time
+    th Artist
     th Venue
+    th Date
     th Setlists
     th
     th
 
   - @shows.each do |show|
     tr
-      td= show.name + " on " + show.date.to_s
-      td= show.time
+      td= show.artist.name
       td= show.venue
+      td= show.date.to_s
       td
         ul Setlists for this show:
         - show.setlists.each do |setlist|

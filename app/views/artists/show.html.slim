@@ -3,10 +3,22 @@ p#notice= notice
 h1
   = @artist.name
 h3
-  |Artist Songs
+  |Artist Shows
 ul.list-group
+  -@artist.shows.each do |show|
+    li.list-group-item
+      =link_to (show.artist.name + " at " + show.venue), show
+h3
+  |Artist Songs
+table.table
   -@artist.songs.each do |song|
-    li.list-group-item =song.name
+    tr
+      td
+        = song.name
+      td
+        .btn-group
+          = link_to 'Edit', edit_song_path(song), class: "btn btn-default"
+          = link_to 'Destroy', song, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
 
 .btn-group
   = link_to 'Edit', edit_artist_path(@artist), class: "btn btn-default"
