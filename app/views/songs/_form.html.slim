@@ -5,9 +5,9 @@
       ul
         - @song.errors.full_messages.each do |msg|
           li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
+  .row
+    .form-group.col-sm-6
+      = f.label :name, class: "control-label"
+      = f.text_field :name, class: "form-control"
   .actions
-    = f.submit 'Save'
+    = f.submit 'Save', class: 'btn btn-primary'

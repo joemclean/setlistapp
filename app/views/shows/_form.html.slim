@@ -7,25 +7,21 @@
           li= msg
   .row
     .form-group.col-sm-6
-      label.control-label
-        = f.label :artist
+      = f.label :artist, class: "form-label"
       br
       = f.select :artist_id, @artists.collect {|a| [ a.name, a.id ] }, class: "form-control"
   .row
     .form-group.col-sm-6
-      label.control-label
-        = f.label :venue
+      = f.label :venue, class: "form-label"
       = f.text_field :venue, class: "form-control"
   .row
     .form-group.col-sm-3
-      label.control-label
-        = f.label :date
+      = f.label :date, class: "form-label"
       br
       = f.date_select :date, class: "form-control"
   .row
     .form-group.col-sm-3
-      label.control-label
-        = f.label :time
+      = f.label :time, class: "form-label"
       = f.text_field :time, class: "form-control"
   .actions
     = f.submit 'Save', class: "btn btn-primary"
