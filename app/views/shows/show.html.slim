@@ -1,16 +1,12 @@
-p
-  b Artist:
-  = @show.artist.name
-p
-  b Date:
-  = @show.date.to_s
-p
-  b Venue:
-  = @show.venue
-p
-  b Time:
-  = @show.time
+h3 = @show.artist.name + " at " + @show.venue
+h4 = @show.date.to_s
+= @show.time
+h3 Setlists for this show:
+ul.list-group
+  -@show.setlists.each do |setlist|
+    li.list-item
+      = link_to ("Setlist created by " + setlist.user.name), setlist
 -if current_user.admin?
   = link_to 'Edit', edit_show_path(@show)
-  | | 
+  =" | "
   = link_to 'Back', shows_path
