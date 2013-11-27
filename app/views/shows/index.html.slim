@@ -19,12 +19,15 @@ table.table
         - show.setlists.each do |setlist|
           li
             = link_to ("Setlist created by " + setlist.user.name), setlist
-      td= link_to 'Make a setlist for this show', new_show_setlist_path(show.id), class: "btn btn-primary"
+      td
+        -if (existing_setlist = current_user.setlist_for_show(show))
+          =link_to "Edit your setlist", edit_setlist_path(existing_setlist), class: "btn btn-success"
+        -else
+          =link_to 'Make a setlist', new_show_setlist_path(show.id), class: "btn btn-primary"
       td
         .btn-group
           = link_to 'Edit Show', edit_show_path(show), class: "btn btn-default"
           = link_to 'Delete Show', show, :method => :delete, class: "btn btn-default", :data => { :confirm => 'Are you sure?' }
-
 br
 
 = link_to 'New Show', new_show_path, class: "btn btn-primary"

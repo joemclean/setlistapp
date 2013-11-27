@@ -11,4 +11,9 @@ class User < ActiveRecord::Base
       user.name = auth["info"]["nickname"]
     end
   end
+
+  def setlist_for_show(show)
+    setlists.where(show_id: show.id).take
+  end
+
 end

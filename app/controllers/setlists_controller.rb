@@ -1,5 +1,7 @@
 class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destroy]
+  before_filter :check_for_existing_setlist, only: [:new, :create]
+  before_filter :check_if_user_is_owner, only: [:edit, :update, :destroy]
 
   # GET /setlists
   # GET /setlists.json
@@ -16,14 +18,15 @@ class SetlistsController < ApplicationController
   def new
     @show = Show.find(params[:show_id])
     @setlist = @show.setlists.build
-    @songs = Song.all
+    @songs = @show.artist.songs
     gon.artist_songs = @songs
     gon.setlist_songs = []
   end
 
   # GET /setlists/1/edit
   def edit
-    @songs = Song.all
+    @show = @setlist.show
+    @songs = @show.artist.songs
     @artist_songs = []
     @songs.each do |song|
       unless @setlist.songs.include?(song)
@@ -104,4 +107,15 @@ class SetlistsController < ApplicationController
       params.require(:setlist).permit(:user_id, :show_id, :song_ids, :songs)
     end
 
+    def check_for_existing_setlist
+      if current_user.setlist_for_show(Show.find(setlist_params[:show_id]))
+        redirect_to shows_path, notice: "Sorry, you already have a setlist for that show."
+      end
+    end
+
+    def check_if_user_is_owner
+      unless @setlist.user == current_user
+        redirect_to shows_path, notice: "Sorry, that setlist doesn't belong to you."
+      end
+    end
 end

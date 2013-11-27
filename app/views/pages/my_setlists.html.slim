@@ -5,7 +5,7 @@ h1
   ul.list-group
   -current_user.setlists.each do |setlist|
     li.list-group-item
-      =link_to ("Setlist for " + setlist.show.name + " on " + setlist.show.date.to_s), setlist
+      =link_to (setlist.show.artist.name + " at " + setlist.show.venue + " on " + setlist.show.date.to_s), setlist
 -else
   ="You haven't created any setlists yet! " 
   =link_to("Click here ", shows_path) + "to see upcoming shows."

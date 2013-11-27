@@ -1,10 +1,8 @@
-p#notice= notice
 h1 
-  = @setlist.user.name + "'s setlist for " + @setlist.show.name + " on " + @setlist.show.date.to_s
+  = @setlist.user.name + "'s setlist for " + @setlist.show.artist.name + " at " + @setlist.show.venue + " on " + @setlist.show.date.to_s
 ul.song_list.list-group
   -@setlist.songs.each do |song|
     li.list-group-item.song_row
       =song.name
-.btn-group
-  = link_to 'Edit', edit_setlist_path(@setlist), class: "btn btn-default"
-  = link_to 'Back', setlists_path, class: "btn btn-default"
+-if @setlist.user == current_user
+  = link_to 'Edit your setlist', edit_setlist_path(@setlist), class: "btn btn-primary"
