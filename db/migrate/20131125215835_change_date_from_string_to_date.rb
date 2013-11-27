@@ -1,9 +1,11 @@
 class ChangeDateFromStringToDate < ActiveRecord::Migration
   def self.up
-   change_column :shows, :date, :date
+    remove_column :shows, :date
+    add_column :shows, :date, :date
   end
 
   def self.down
-   change_column :shows, :date, :string
+   remove_column :shows, :date
+   add_column :shows, :date, :string
   end
 end
