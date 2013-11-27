@@ -1,6 +1,6 @@
 class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destroy]
-  before_filter :check_for_existing_setlist, only: [:new, :create]
+  before_filter :check_for_existing_setlist, only: [:create]
   before_filter :check_if_user_is_owner, only: [:edit, :update, :destroy]
 
   # GET /setlists
@@ -108,14 +108,10 @@ class SetlistsController < ApplicationController
     end
 
     def check_for_existing_setlist
-      if current_user.setlist_for_show(Show.find(setlist_params[:show_id]))
-        redirect_to shows_path, notice: "Sorry, you already have a setlist for that show."
-      end
+      redirect_to(shows_path, notice: "Sorry, you already have a setlist for that show.") if current_user.setlist_for_show(Show.find(setlist_params[:show_id]))
     end
 
     def check_if_user_is_owner
-      unless @setlist.user == current_user
-        redirect_to shows_path, notice: "Sorry, that setlist doesn't belong to you."
-      end
+      redirect_to(shows_path, notice: "Sorry, that setlist doesn't belong to you.") unless @setlist.user == current_user
     end
 end
