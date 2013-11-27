@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_action :set_song, only: [:show, :edit, :update, :destroy]
+  before_filter :is_user_admin?, except: [:show]
 
   # GET /songs
   # GET /songs.json
@@ -71,5 +72,9 @@ class SongsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def song_params
       params.require(:song).permit(:name)
+    end
+
+    def is_user_admin?
+      redirect_to(root_url, notice: "Hey! You can't do that if you're not an admin.") unless current_user.admin?
     end
 end

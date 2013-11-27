@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  
+  before_filter :is_user_admin?, except: [:create, :show, :index]
+
   def create
     user = User.from_omniauth(env['omniauth.auth'])
   end
@@ -20,5 +23,9 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def is_user_admin?
+      redirect_to(root_url, notice: "Hey! You can't do that if you're not an admin.") unless current_user.admin?
     end
 end

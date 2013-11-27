@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
   before_action :set_artist, only: [:show, :edit, :update, :destroy]
-
+  before_filter :is_user_admin?, except: [:index, :show]
   # GET /artists
   # GET /artists.json
   def index
@@ -70,5 +70,9 @@ class ArtistsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
       params.require(:artist).permit(:name)
+    end
+
+    def is_user_admin?
+      redirect_to(root_url, notice: "Hey! You can't do that if you're not an admin.") unless current_user.admin?
     end
 end

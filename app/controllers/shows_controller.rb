@@ -1,5 +1,6 @@
 class ShowsController < ApplicationController
   before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_filter :is_user_admin?, except: [:index, :show]
 
   # GET /shows
   # GET /shows.json
@@ -72,5 +73,9 @@ class ShowsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def show_params
       params.require(:show).permit(:artist_id, :name, :date, :venue, :time)
+    end
+
+    def is_user_admin?
+      redirect_to(root_url, notice: "Hey! You can't do that if you're not an admin.") unless current_user.admin?
     end
 end
