@@ -8,9 +8,10 @@ table.table
     tr
       td = link_to artist.name, artist
       td
-        .btn-group
-          = link_to 'Edit', edit_artist_path(artist), class: "btn btn-default"
-          = link_to 'Destroy', artist, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
+        -if current_user.admin?
+          .btn-group
+            = link_to 'Edit', edit_artist_path(artist), class: "btn btn-default"
+            = link_to 'Destroy', artist, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-default"
 br
-
-= link_to 'New Artist', new_artist_path
+-if current_user.admin?
+  = link_to 'New Artist', new_artist_path, class: 'btn btn-primary'

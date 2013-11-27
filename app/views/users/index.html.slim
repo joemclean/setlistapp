@@ -1,8 +1,8 @@
-h1 User rankings
+h1 Users
 
 table.table
   tr
     th Name
-  - @users.each do |show|
+  - @users.each do |user|
     tr
-      td= show.name
+      td= user.name
