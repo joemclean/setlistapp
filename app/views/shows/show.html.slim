@@ -2,11 +2,14 @@ h3 = @show.artist.name + " at " + @show.venue
 h4 = @show.date.to_s
 = @show.time
 h3 Setlists for this show:
-ul.list-group
-  -@show.setlists.each do |setlist|
-    li.list-item
-      = link_to ("Setlist created by " + setlist.user.name), setlist
+-if @show.setlists.any?
+  ul.list-group
+    -@show.setlists.each do |setlist|
+      li.list-group-item
+        = link_to ("Setlist created by " + setlist.user.name), setlist
+-else
+  p
+    = "No setlists have been created for this show yet! "
+    = link_to 'Make a setlist', new_show_setlist_path(@show.id)
 -if current_user.admin?
-  = link_to 'Edit', edit_show_path(@show)
-  =" | "
-  = link_to 'Back', shows_path
+  = link_to 'Edit show', edit_show_path(@show), class: "btn btn-warning"

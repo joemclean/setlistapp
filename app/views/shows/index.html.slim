@@ -17,5 +17,5 @@ h1 Upcoming shows
               = link_to 'Edit Show', edit_show_path(show), class: "btn btn-default"
               = link_to 'Delete Show', show, :method => :delete, class: "btn btn-default", :data => { :confirm => 'Are you sure?' }
 -if current_user.admin?
-  = link_to 'New Show', new_show_path, class: "btn btn-primary"
+  = link_to 'New Show', new_show_path, class: "btn btn-warning"
 btn-group

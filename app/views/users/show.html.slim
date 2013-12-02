@@ -1,2 +1,12 @@
 h1
   = "User profile for " + @user.name
+
+=@user.setlists.count.to_s + " setlists created"
+h3 Setlists
+-if @user.setlists.any?
+  ul.list-group
+  -@user.setlists.each do |setlist|
+    li.list-group-item
+      =link_to (setlist.show.artist.name + " at " + setlist.show.venue + " on " + setlist.show.date.to_s), setlist
+-else
+  ="This user hasn't created any setlists yet! "
