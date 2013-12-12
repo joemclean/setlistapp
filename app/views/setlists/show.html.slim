@@ -5,4 +5,7 @@ ul.song_list.list-group
     li.list-group-item.song_row
       =song.name
 -if @setlist.user == current_user
-  = link_to 'Edit your setlist', edit_setlist_path(@setlist), class: "btn btn-primary"
+  -if @setlist.show.closed?
+    ="This show is closed."
+  -else
+    = link_to 'Edit your setlist', edit_setlist_path(@setlist), class: "btn btn-primary"

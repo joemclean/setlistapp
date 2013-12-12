@@ -5,8 +5,10 @@ SetlistApp::Application.routes.draw do
     resources :setlists
   end
 
-  resources :artists
+  get 'shows/:id/close' => 'shows#close', as: :close_show
+  get 'shows/:id/open' => 'shows#open', as: :open_show
 
+  resources :artists
   resources :songs
 
   get "users/create"

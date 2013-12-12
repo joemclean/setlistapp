@@ -9,7 +9,10 @@ h3 Setlists for this show:
         = link_to ("Setlist created by " + setlist.user.name), setlist
 -else
   p
-    = "No setlists have been created for this show yet! "
-    = link_to 'Make a setlist', new_show_setlist_path(@show.id)
+    -if @show.closed?
+      ="No setlists were created for this show."
+    -else
+      = "No setlists have been created for this show yet! "
+      = link_to 'Make a setlist', new_show_setlist_path(@show.id)
 -if current_user.admin?
   = link_to 'Edit show', edit_show_path(@show), class: "btn btn-warning"

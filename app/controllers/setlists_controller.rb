@@ -2,7 +2,7 @@ class SetlistsController < ApplicationController
   before_action :set_setlist, only: [:show, :edit, :update, :destroy]
   before_filter :check_for_existing_setlist, only: [:create]
   before_filter :check_if_user_is_owner, only: [:edit, :update, :destroy]
-
+  before_filter :check_if_show_is_closed, only: [:new, :create, :edit, :update]
   # GET /setlists
   # GET /setlists.json
   def index
@@ -113,5 +113,9 @@ class SetlistsController < ApplicationController
 
     def check_if_user_is_owner
       redirect_to(shows_path, notice: "Sorry, that setlist doesn't belong to you.") unless @setlist.user == current_user
+    end
+
+    def check_if_show_is_closed
+      redirect_to(shows_path, notice: "Sorry, that show is closed.") if @setlist.show.closed?
     end
 end

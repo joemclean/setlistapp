@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_action :set_show, only: [:show, :edit, :update, :destroy]
+  before_action :set_show, only: [:show, :edit, :update, :destroy, :close, :open]
   before_filter :is_user_admin?, except: [:index, :show]
 
   # GET /shows
@@ -63,6 +63,25 @@ class ShowsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def close
+    @show.closed = true
+    if @show.save
+      redirect_to shows_path, notice: 'Show was successfully closed.'
+    else
+      redirect_to shows_path, notice: 'Something went wrong.'
+    end
+  end
+
+  def open
+    @show.closed = false
+    if @show.save
+      redirect_to shows_path, notice: 'Show was successfully reopened.'
+    else
+      redirect_to shows_path, notice: 'Something went wrong.'
+    end
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
